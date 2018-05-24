@@ -24,7 +24,7 @@ import java.util.Random;
  * @version v1.0
  * @since 2018/5/18 0:07
  */
-public class UUID {
+public abstract class UUID {
 
     static Random r = new Random();
 

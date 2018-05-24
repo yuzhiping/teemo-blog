@@ -16,9 +16,11 @@ limitations under the License.
 package com.github.hexsmith.blog.util;
 
 import com.github.hexsmith.blog.constant.WebConstant;
+import com.github.hexsmith.blog.model.vo.ContentVo;
 import com.github.pagehelper.PageInfo;
 import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -33,9 +35,10 @@ import java.util.regex.Pattern;
  * @version v1.0
  * @since 2018/5/18 0:02
  */
-public class Commons {
+@Component
+public final class Commons {
 
-    private static final String THEME = "themes/default";
+    public static final String THEME = "themes/default";
 
     /**
      * 判断分页中是否有数据
@@ -89,10 +92,10 @@ public class Commons {
      * 网站配置项
      *
      * @param key
-     * @param defalutValue 默认值
+     * @param defaultValue 默认值
      * @return
      */
-    public static String site_option(String key, String defalutValue) {
+    public static String site_option(String key, String defaultValue) {
         if (StringUtils.isBlank(key)) {
             return "";
         }
@@ -100,7 +103,7 @@ public class Commons {
         if (StringUtils.isNotBlank(str)) {
             return str;
         } else {
-            return defalutValue;
+            return defaultValue;
         }
     }
 
@@ -319,7 +322,7 @@ public class Commons {
             Matcher m_image = p_image.matcher(content);
             if (m_image.find()) {
                 img = img + "," + m_image.group();
-                // //匹配src
+                // 匹配src
                 Matcher m = Pattern.compile("src\\s*=\\s*\'?\"?(.*?)(\'|\"|>|\\s+)").matcher(img);
                 if (m.find()) {
                     return m.group(1);

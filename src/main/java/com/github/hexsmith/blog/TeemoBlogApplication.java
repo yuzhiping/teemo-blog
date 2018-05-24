@@ -2,6 +2,7 @@ package com.github.hexsmith.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author hexsmith
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version v1.0
  */
 @SpringBootApplication
+@EnableTransactionManagement
 public class TeemoBlogApplication {
 
     public static void main(String[] args) {
