@@ -29,7 +29,7 @@ import com.github.hexsmith.blog.service.CommentService;
 import com.github.hexsmith.blog.service.ContentService;
 import com.github.hexsmith.blog.service.MetaService;
 import com.github.hexsmith.blog.service.SiteService;
-import com.github.hexsmith.blog.util.IPKit;
+import com.github.hexsmith.blog.util.IPUtils;
 import com.github.hexsmith.blog.util.PatternKit;
 import com.github.hexsmith.blog.util.TaleUtils;
 import com.github.pagehelper.PageInfo;
@@ -216,7 +216,7 @@ public class IndexController extends BaseController {
             return RestResponseBo.fail("请输入200个字符以内的评论");
         }
 
-        String val = IPKit.getIpAddrByRequest(request) + ":" + cid;
+        String val = IPUtils.getIpAddrByRequest(request) + ":" + cid;
         Integer count = cache.hget(Types.COMMENTS_FREQUENCY.getType(), val);
         if (null != count && count > 0) {
             return RestResponseBo.fail("您发表评论太快了，请过会再试");
@@ -443,7 +443,7 @@ public class IndexController extends BaseController {
      * @return
      */
     private boolean checkHitsFrequency(HttpServletRequest request, String cid) {
-        String val = IPKit.getIpAddrByRequest(request) + ":" + cid;
+        String val = IPUtils.getIpAddrByRequest(request) + ":" + cid;
         Integer count = cache.hget(Types.HITS_FREQUENCY.getType(), val);
         if (null != count && count > 0) {
             return true;

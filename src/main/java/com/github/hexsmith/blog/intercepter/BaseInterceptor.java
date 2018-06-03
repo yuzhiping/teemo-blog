@@ -64,7 +64,7 @@ public class BaseInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI();
 
         logger.info("UserAgent: {}", request.getHeader(USER_AGENT));
-        logger.info("用户访问地址: {}, 来路地址: {}", uri, IPKit.getIpAddrByRequest(request));
+        logger.info("用户访问地址: {}, 来路地址: {}", uri, IPUtils.getIpAddrByRequest(request));
 
 
         //请求拦截处理
@@ -76,6 +76,9 @@ public class BaseInterceptor implements HandlerInterceptor {
                 user = userService.queryUserById(uid);
                 request.getSession().setAttribute(WebConstant.LOGIN_SESSION_KEY, user);
             }
+        }
+        if (uri.contains("/admin/geetestInit")) {
+            return true;
         }
         if (uri.startsWith(contextPath + "/admin") && !uri.startsWith(contextPath + "/admin/login") && null == user) {
             response.sendRedirect(request.getContextPath() + "/admin/login");

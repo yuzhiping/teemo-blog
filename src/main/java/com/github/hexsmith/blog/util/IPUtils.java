@@ -27,7 +27,7 @@ import java.util.Enumeration;
  * @version v1.0
  * @since 2018/5/18 22:10
  */
-public class IPKit {
+public class IPUtils {
 
     /**
      * @param request 请求
